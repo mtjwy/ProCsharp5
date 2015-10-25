@@ -67,8 +67,16 @@ namespace ProCsharp5
         static void Main(string[] args)
         {
 
-            GetBonusByEmployeeType(Employee1.VicePresident);
-            GetBonusByEmployeeType(Employee1.Contractor);
+            //GetBonusByEmployeeType(Employee1.VicePresident);
+            //GetBonusByEmployeeType(Employee1.Contractor);
+            Employee1 emp = Employee1.VicePresident;
+
+            //ToString() returns the string name of the current enumeration’s value
+            Console.WriteLine("emp is a {0}.", emp.ToString());
+
+            // cast the enum variable against the underlying storage type to get the value of a given enumeration variable 
+            Console.WriteLine("{0} = {1}", emp.ToString(), (int)emp);
+
             Console.ReadLine();
 
         }
