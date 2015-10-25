@@ -8,8 +8,16 @@ namespace ProCsharp5
 {
     class Program
     {
-        static void Main(string[] args)
+        //Main method is private by default
+        static int Main(string[] args)
         {
+            //processing any incoming args
+            foreach(string arg in args)
+            {
+                Console.Write("Arg: {0}", arg);
+            }
+            Console.ReadLine();
+            return -1;
         }
     }
 }
