@@ -9,44 +9,28 @@ namespace ProCsharp5
     class Program
     {
         /*
-            Parameter modifier:
-                non, pass by value
-                out, output parameters
-                ref, pass by reference
-                params, a method only support single params argument. it must be the final argument in the parameter list.
+            Optional parameters
+                The value assigned to an optional parameter must be known at compile time
+                Optional parameters must always be put at the end of parameter list
          */
-
-        static int Main(string[] args)
+        static void Main(string[] args)
         {
-            //pass double values directly
-            Console.WriteLine("Average = {0} ", Average(1.0, 2.0, 3.0, 4.0, 5.0));
 
-            //pass array
-            double[] data = { 1.0, 2.0, 3.0, 4.0, 5.0 };
-            Console.WriteLine("Average = {0} ", Average(data));
+            printLog("Null pointer!");
 
-            //Average of 0 is 0! 
-            Console.WriteLine(Average());
-
+            printLog("File not found!", "file system");
             Console.ReadLine();
-            return -1;
+            
         }
 
-        //The params modifier
-        static double Average(params double[] values)
+        static void printLog(string message, string owner = "Progmmer")
         {
-            Console.WriteLine("Your send me {0} doubles.", values.Length);
-            if (values.Length == 0)
-            {
-                return 0;
-            }
-            double sum = 0;
-            foreach (double d in values)
-            {
-                sum += d;
-            }
-            return sum / values.Length;
+            Console.Beep();
+            Console.WriteLine("Error: {0}", message);
+            Console.WriteLine("Owner of Error: {0}", owner);
         }
+
+       
 
 
     }
