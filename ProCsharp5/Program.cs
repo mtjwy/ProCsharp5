@@ -64,18 +64,39 @@ namespace ProCsharp5
             }
         }
 
+        static void EvaluateEnum(System.Enum e)
+        {
+            Console.WriteLine("Information about {0}:", e.ToString());
+            Console.WriteLine("Type: {0}", e.GetType());//get enum type
+            Console.WriteLine("Underlying storage type: {0}", Enum.GetUnderlyingType(e.GetType()));//get storage type
+
+            //Get all name/value pairs
+            Array enumData = Enum.GetValues(e.GetType());
+
+            Console.WriteLine("This enum has {0} members.", enumData.Length);
+            //Console.WriteLine("Type of array item: {0}",enumData.GetValue(0).GetType());
+
+            for (int i = 0; i < enumData.Length; i++)
+            {
+                Console.WriteLine("Name: {0}, Value: {0:D}", enumData.GetValue(i));//use the d format flag
+            }
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {
 
             //GetBonusByEmployeeType(Employee1.VicePresident);
             //GetBonusByEmployeeType(Employee1.Contractor);
+
             Employee1 emp = Employee1.VicePresident;
+            EvaluateEnum(emp);
 
-            //ToString() returns the string name of the current enumeration’s value
-            Console.WriteLine("emp is a {0}.", emp.ToString());
+            DayOfWeek day = DayOfWeek.Sunday;
+            EvaluateEnum(day);
 
-            // cast the enum variable against the underlying storage type to get the value of a given enumeration variable 
-            Console.WriteLine("{0} = {1}", emp.ToString(), (int)emp);
+            ConsoleColor cc = ConsoleColor.Black;
+            EvaluateEnum(cc);
 
             Console.ReadLine();
 
