@@ -9,99 +9,74 @@ namespace ProCsharp5
     class Program
     {
         /*
-            enum
-                enum is used to create a set of symbolic names that map to known numerical values
+            System.ValueType
+                structures and enumerations are implicitly derived from System.ValueType.
+
+                The role of System.ValueType is to ensure that the derived type is allocated 
+                on the stack rather than the garbege-collected heap.
+
+                value types are using value-based semantics. the lifetime of a structure, enum,
+                int, float are very predictable.
+                
          */
 
-
-        enum Employee1
-        //default underlying storage type of enum is int
-        //enum Employee: Byte //--> set underlying storage type to Byte
+        // Assigning two intrinsic value types results in 
+        // two independent variables on the stack. 
+        static void ValueTypeAssignment()
         {
-            Manager,      // = 0
-            Grunt,        // = 1
-            Contractor,   // = 2
-            VicePresident // = 3
+            Console.WriteLine("Assigning value types\n");
+            Point p1 = new Point(10, 10);
+            Point p2 = p1;
+            // Print both points. 
+            p1.Display();
+            p2.Display();
 
+            // Change p1.X and print again. p2.X is not changed. 
+            p1.X = 100;
+            Console.WriteLine("\n=> Changed p1.X\n");
+            p1.Display();
+            p2.Display();
         }
 
-        //begine with 100
-        enum Employee2
+        //struct is a value type
+        struct Point
         {
-            Manager = 100,      
-            Grunt,        // = 101
-            Contractor,   // = 102
-            VicePresident // = 103
+            // Fields of the structure. 
+            public int X;
+            public int Y;
 
-        }
-
-        //Elements of enumeration need not be sequential!
-        enum Employee3
-        {
-            Manager = 100,
-            Grunt = 3,        
-            Contractor = 39,   
-            VicePresident = 20
-
-        }
-
-        static void GetBonusByEmployeeType(Employee1 e)
-        {
-            switch (e)
+            public Point(int XPos, int YPos)
             {
-                case Employee1.Manager:
-                    Console.WriteLine("How about stock options instead?");
-                    break;
-                case Employee1.Grunt:
-                    Console.WriteLine("You have got to be kidding ... ");
-                    break;
-                case Employee1.Contractor:
-                    Console.WriteLine("You already get enough cash ...");
-                    break;
-                case Employee1.VicePresident:
-                    Console.WriteLine("Very good! Sir!");
-                    break;
+                X = XPos;
+                Y = YPos;
             }
-        }
 
-        static void EvaluateEnum(System.Enum e)
-        {
-            Console.WriteLine("Information about {0}:", e.ToString());
-            Console.WriteLine("Type: {0}", e.GetType());//get enum type
-            Console.WriteLine("Underlying storage type: {0}", Enum.GetUnderlyingType(e.GetType()));//get storage type
-
-            //Get all name/value pairs
-            Array enumData = Enum.GetValues(e.GetType());
-
-            Console.WriteLine("This enum has {0} members.", enumData.Length);
-            //Console.WriteLine("Type of array item: {0}",enumData.GetValue(0).GetType());
-
-            for (int i = 0; i < enumData.Length; i++)
+            // Add 1 to the (X, Y) position. 
+            public void Increment()
             {
-                Console.WriteLine("Name: {0}, Value: {0:D}", enumData.GetValue(i));//use the d format flag
+                X++; Y++;
             }
-            Console.WriteLine();
+            // Subtract 1 from the (X, Y) position. 
+            public void Decrement()
+            {
+                X--; Y--;
+            }
+            // Display the current position. 
+            public void Display()
+            {
+                Console.WriteLine("X = {0}, Y = {1}", X, Y);
+            }
         }
 
         static void Main(string[] args)
         {
 
-            //GetBonusByEmployeeType(Employee1.VicePresident);
-            //GetBonusByEmployeeType(Employee1.Contractor);
-
-            Employee1 emp = Employee1.VicePresident;
-            EvaluateEnum(emp);
-
-            DayOfWeek day = DayOfWeek.Sunday;
-            EvaluateEnum(day);
-
-            ConsoleColor cc = ConsoleColor.Black;
-            EvaluateEnum(cc);
+            ValueTypeAssignment();
 
             Console.ReadLine();
 
         }
 
-        
+
     }
 }
