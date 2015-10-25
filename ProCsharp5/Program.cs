@@ -13,31 +13,41 @@ namespace ProCsharp5
                 non, pass by value
                 out, output parameters
                 ref, pass by reference
-                params,
+                params, a method only support single params argument. it must be the final argument in the parameter list.
          */
 
         static int Main(string[] args)
         {
-            string s1 = "flip";
-            string s2 = "flop";
+            //pass double values directly
+            Console.WriteLine("Average = {0} ", Average(1.0, 2.0, 3.0, 4.0, 5.0));
 
-            Console.WriteLine("Before swap: {0}, {1}", s1, s2);
-            Swap(ref s1, ref s2);
-            Console.WriteLine("After swap: {0}, {1}", s1, s2);      
+            //pass array
+            double[] data = { 1.0, 2.0, 3.0, 4.0, 5.0 };
+            Console.WriteLine("Average = {0} ", Average(data));
+
+            //Average of 0 is 0! 
+            Console.WriteLine(Average());
 
             Console.ReadLine();
             return -1;
         }
 
-        //The ref modifier
-        //pass by reference, used to change the values declared in the caller's scope (sorting, swapping routine)
-        static void Swap(ref string s1, ref string s2)
+        //The params modifier
+        static double Average(params double[] values)
         {
-            string temp = s1;
-            s1 = s2;
-            s2 = temp;
+            Console.WriteLine("Your send me {0} doubles.", values.Length);
+            if (values.Length == 0)
+            {
+                return 0;
+            }
+            double sum = 0;
+            foreach (double d in values)
+            {
+                sum += d;
+            }
+            return sum / values.Length;
         }
 
-       
+
     }
 }
