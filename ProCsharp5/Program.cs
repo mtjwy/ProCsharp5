@@ -12,31 +12,30 @@ namespace ProCsharp5
             Parameter modifier:
                 non, pass by value
                 out, output parameters
-                ref,
+                ref, pass by reference
                 params,
          */
 
         static int Main(string[] args)
         {
-            int ansAdd = 0;
-            int ansSub = 0;
-            
-            AddSubstract(1, 2, out ansAdd, out ansSub);
+            string s1 = "flip";
+            string s2 = "flop";
 
-            Console.WriteLine(ansAdd);
-            Console.WriteLine(ansSub);
+            Console.WriteLine("Before swap: {0}, {1}", s1, s2);
+            Swap(ref s1, ref s2);
+            Console.WriteLine("After swap: {0}, {1}", s1, s2);      
 
             Console.ReadLine();
             return -1;
         }
 
-        //The out modifier
-        //output parameters must be assigned in the method implementation
-        //use output parameters to get multiple outputs from a single method invocation
-        static void AddSubstract(int x, int y, out int ansAdd, out int ansSub)
+        //The ref modifier
+        //pass by reference, used to change the values declared in the caller's scope (sorting, swapping routine)
+        static void Swap(ref string s1, ref string s2)
         {
-            ansAdd = x + y;
-            ansSub = x - y;
+            string temp = s1;
+            s1 = s2;
+            s2 = temp;
         }
 
        
