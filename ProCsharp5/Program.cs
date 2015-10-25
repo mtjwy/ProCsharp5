@@ -12,26 +12,35 @@ namespace ProCsharp5
             Optional parameters
                 The value assigned to an optional parameter must be known at compile time
                 Optional parameters must always be put at the end of parameter list
+            
+            Named parameters
+                named parameters and optional arguments tend to work hand in hand.
+                named parameters allowed the called to specify only the parameters for which they
+                do not wish to received the defaults.
          */
         static void Main(string[] args)
         {
 
-            printLog("Null pointer!");
-
-            printLog("File not found!", "file system");
+            DisplayFancyMessage();
+            DisplayFancyMessage(message: "Hello");
             Console.ReadLine();
-            
+
         }
 
-        static void printLog(string message, string owner = "Progmmer")
+        static void DisplayFancyMessage(ConsoleColor textColor = ConsoleColor.Blue,
+                                        ConsoleColor backgroundColor = ConsoleColor.White,
+                                        string message = "Test Message")
         {
-            Console.Beep();
-            Console.WriteLine("Error: {0}", message);
-            Console.WriteLine("Owner of Error: {0}", owner);
+            // Store old colors to restore after message is printed. 
+            ConsoleColor oldTextColor = Console.ForegroundColor;
+            ConsoleColor oldbackgroundColor = Console.BackgroundColor;
+            // Set new colors and print message. 
+            Console.ForegroundColor = textColor;
+            Console.BackgroundColor = backgroundColor;
+            Console.WriteLine(message);
+            // Restore previous colors. 
+            Console.ForegroundColor = oldTextColor;
+            Console.BackgroundColor = oldbackgroundColor;
         }
-
-       
-
-
     }
 }
