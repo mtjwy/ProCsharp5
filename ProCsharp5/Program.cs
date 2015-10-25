@@ -8,44 +8,37 @@ namespace ProCsharp5
 {
     class Program
     {
-        //Main method is private by default
+        /*
+            Parameter modifier:
+                non, pass by value
+                out, output parameters
+                ref,
+                params,
+         */
+
         static int Main(string[] args)
         {
-            //ShowEnvironmentDetails();
-            objectFunctionality();
-            dataTypeFunctionality();
+            int ansAdd = 0;
+            int ansSub = 0;
+            
+            AddSubstract(1, 2, out ansAdd, out ansSub);
+
+            Console.WriteLine(ansAdd);
+            Console.WriteLine(ansSub);
+
             Console.ReadLine();
             return -1;
         }
 
-        //use some methods in System.Environment
-        static void ShowEnvironmentDetails()
+        //The out modifier
+        //output parameters must be assigned in the method implementation
+        //use output parameters to get multiple outputs from a single method invocation
+        static void AddSubstract(int x, int y, out int ansAdd, out int ansSub)
         {
-            foreach(String drive in Environment.GetLogicalDrives())
-            {
-                Console.WriteLine("Driver: {0}", drive);
-            }
-            Console.WriteLine("OS: {0}", Environment.OSVersion);
-            Console.WriteLine("Number of processors: {0}", Environment.ProcessorCount);
-            Console.WriteLine(".NET Version: {0}", Environment.Version);
-            Console.WriteLine("User name: {0}", Environment.UserName);
-            Console.WriteLine("Machine name: {0}", Environment.MachineName);
-            Console.WriteLine("New line: {0}", Environment.NewLine);
-            Console.WriteLine("System directory: {0}", Environment.SystemDirectory);
-          
+            ansAdd = x + y;
+            ansSub = x - y;
         }
 
-        static void objectFunctionality()
-        {
-            Console.WriteLine("{0}, {1}, {2}, {3}, {4}",
-                12.GetType(), 12.GetTypeCode(), 12.GetHashCode(), 12.ToString(), 12.Equals(12));
-        }
-
-        static void dataTypeFunctionality()
-        {
-            Console.WriteLine(double.Epsilon);
-            Console.WriteLine(double.PositiveInfinity);
-            Console.WriteLine(double.NegativeInfinity);
-        }
+       
     }
 }
