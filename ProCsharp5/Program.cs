@@ -11,7 +11,9 @@ namespace ProCsharp5
         //Main method is private by default
         static int Main(string[] args)
         {
-            ShowEnvironmentDetails();
+            //ShowEnvironmentDetails();
+            objectFunctionality();
+            dataTypeFunctionality();
             Console.ReadLine();
             return -1;
         }
@@ -31,6 +33,19 @@ namespace ProCsharp5
             Console.WriteLine("New line: {0}", Environment.NewLine);
             Console.WriteLine("System directory: {0}", Environment.SystemDirectory);
           
+        }
+
+        static void objectFunctionality()
+        {
+            Console.WriteLine("{0}, {1}, {2}, {3}, {4}",
+                12.GetType(), 12.GetTypeCode(), 12.GetHashCode(), 12.ToString(), 12.Equals(12));
+        }
+
+        static void dataTypeFunctionality()
+        {
+            Console.WriteLine(double.Epsilon);
+            Console.WriteLine(double.PositiveInfinity);
+            Console.WriteLine(double.NegativeInfinity);
         }
     }
 }
