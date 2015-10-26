@@ -12,29 +12,23 @@ namespace ProCsharp5
         static void Main(string[] args)
         {
 
-            MakeSomeBikes();
+            Console.WriteLine("***** Static Data, method, constructor demo *****\n");
+            // Make an account. 
+            SavingsAccount s1 = new SavingsAccount(50);
+            // Print the current interest rate. 
+            Console.WriteLine("Interest Rate is: {0}", SavingsAccount.GetInterestRate());
+
+            // Try to change the interest rate via property. 
+            SavingsAccount.SetInterestRate(0.08);
+
+            // Make a second account. 
+            SavingsAccount s2 = new SavingsAccount(100);
+            // Should print 0.08. static constructor is only called once.
+            Console.WriteLine("Interest Rate is: {0}", SavingsAccount.GetInterestRate());
+
             Console.ReadLine();
-
+            
         }
-
-        static void MakeSomeBikes()
-        {
-            // driverName = "", driverIntensity = 0 
-            Motorcycle m1 = new Motorcycle();
-            Console.WriteLine("Name= {0}, Intensity= {1}",
-                              m1.driverName, m1.driverIntensity);
-
-            // driverName = "Tiny", driverIntensity = 0 
-            Motorcycle m2 = new Motorcycle(name: "Tiny");
-            Console.WriteLine("Name= {0}, Intensity= {1}",
-                              m2.driverName, m2.driverIntensity);
-
-            // driverName = "", driverIntensity = 7 
-            Motorcycle m3 = new Motorcycle(7);
-            Console.WriteLine("Name= {0}, Intensity= {1}",
-                              m3.driverName, m3.driverIntensity);
-        }
-
 
     }
 }
