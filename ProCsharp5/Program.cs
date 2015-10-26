@@ -8,88 +8,31 @@ namespace ProCsharp5
 {
     class Program
     {
-        /*
-            Nullable Types
-                use ? suffix to make a value type to be a nullable type
-                System.Nullable<T> 
-                
-                In C#, the ?suffix notation is a shorthand for creating an instance 
-                of the generic System.Nullable<T> structure type.  
-
-                ?? operator assigns a value to a nullable type if the retrieved value is in fact null
-                         
-         */
-        static void LocalNullableVariables()
-        {
-            // Define some local nullable variables. 
-
-            int? nullableInt = 10;
-            //Nullable<int> nullableInt = 10;
-
-            double? nullableDouble = 3.14;
-            //Nullable<double> nullableDouble = 3.14;
-
-            bool? nullableBool = null;
-            //Nullable<bool> nullableBool = null;
-
-            char? nullableChar = 'a';
-            //Nullable<char> nullableChar = 'a';
-
-            int?[] arrayOfNullableInts = new int?[10];
-            //Nullable<int>[] arrayOfNullableInts = new int?[10];
-
-            // Error! Strings are reference types! 
-            // string? s = "oops"; 
-        }
-
-        class DatabaseReader
-        {
-            //Nullable data field
-            public int? numericValue = null;
-            public bool? boolValue = true;
-
-            //return type is Nallable
-            public int? GetIntFromDatabase()
-            {
-                return numericValue;
-            }
-
-            public bool? GetBoolFromDatabase()
-            {
-                return boolValue;
-            }
-
-        }
-
+       
         static void Main(string[] args)
         {
-            DatabaseReader dr = new DatabaseReader();
 
-            // If the value from GetIntFromDatabase() is null, 
-            // assign local variable to 100.
-            int? i = dr.GetIntFromDatabase() ?? 100;
-            if (i.HasValue)
-            {
-                Console.WriteLine("Value of 'i' is: {0}", i.Value);
-            }
-            else
-            {
-                Console.WriteLine("Value of 'i' is undefined.");
-            }
-
-            bool? b = dr.GetBoolFromDatabase();
-            if (b.HasValue)
-            {
-                Console.WriteLine("Value of 'b' is: {0}", b.Value);
-            }
-            else
-            {
-                Console.WriteLine("Value of 'b' is undefined.");
-            }
-
-
+            MakeSomeBikes();
             Console.ReadLine();
 
+        }
+
+        static void MakeSomeBikes()
+        {
+            // driverName = "", driverIntensity = 0 
+            Motorcycle m1 = new Motorcycle();
+            Console.WriteLine("Name= {0}, Intensity= {1}",
+                              m1.driverName, m1.driverIntensity);
+
+            // driverName = "Tiny", driverIntensity = 0 
+            Motorcycle m2 = new Motorcycle(name: "Tiny");
+            Console.WriteLine("Name= {0}, Intensity= {1}",
+                              m2.driverName, m2.driverIntensity);
+
+            // driverName = "", driverIntensity = 7 
+            Motorcycle m3 = new Motorcycle(7);
+            Console.WriteLine("Name= {0}, Intensity= {1}",
+                              m3.driverName, m3.driverIntensity);
         }
 
 
