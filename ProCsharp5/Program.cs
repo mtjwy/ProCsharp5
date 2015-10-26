@@ -12,19 +12,14 @@ namespace ProCsharp5
         static void Main(string[] args)
         {
 
-            Console.WriteLine("***** Static Data, method, constructor demo *****\n");
-            // Make an account. 
-            SavingsAccount s1 = new SavingsAccount(50);
-            // Print the current interest rate. 
-            Console.WriteLine("Interest Rate is: {0}", SavingsAccount.GetInterestRate());
+            Console.WriteLine("***** Properties Encapsulation *****\n");
+            Employee emp = new Employee("Marvin", 456, 30000);
+            emp.GiveBonus(1000);
+            emp.DisplayStats();
 
-            // Try to change the interest rate via property. 
-            SavingsAccount.SetInterestRate(0.08);
-
-            // Make a second account. 
-            SavingsAccount s2 = new SavingsAccount(100);
-            // Should print 0.08. static constructor is only called once.
-            Console.WriteLine("Interest Rate is: {0}", SavingsAccount.GetInterestRate());
+            // Set and get the Name property. 
+            emp.Name = "Marv";
+            Console.WriteLine("Employee is named: {0}", emp.Name);
 
             Console.ReadLine();
             
