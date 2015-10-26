@@ -15,6 +15,8 @@ namespace ProCsharp5
                 
                 In C#, the ?suffix notation is a shorthand for creating an instance 
                 of the generic System.Nullable<T> structure type.  
+
+                ?? operator assigns a value to a nullable type if the retrieved value is in fact null
                          
          */
         static void LocalNullableVariables()
@@ -63,7 +65,9 @@ namespace ProCsharp5
         {
             DatabaseReader dr = new DatabaseReader();
 
-            int? i = dr.GetIntFromDatabase();
+            // If the value from GetIntFromDatabase() is null, 
+            // assign local variable to 100.
+            int? i = dr.GetIntFromDatabase() ?? 100;
             if (i.HasValue)
             {
                 Console.WriteLine("Value of 'i' is: {0}", i.Value);
