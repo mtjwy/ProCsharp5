@@ -9,53 +9,79 @@ namespace ProCsharp5
     class Program
     {
         /*
-            Passing Reference Types by Reference
-               If a reference type is passed by reference, 
-               the callee can change the object the original reference is referencing.      
+            Nullable Types
+                use ? suffix to make a value type to be a nullable type
+                System.Nullable<T> 
+                
+                In C#, the ?suffix notation is a shorthand for creating an instance 
+                of the generic System.Nullable<T> structure type.  
+                         
          */
-
-        //pass by ref
-        static void SendAPersonByReference(ref Person p)
+        static void LocalNullableVariables()
         {
-            // Change some data of "p". 
-            p.personAge = 555;
+            // Define some local nullable variables. 
 
-            // "p" is now pointing to a new object on the heap! 
-            p = new Person("Nikki", 999);
+            int? nullableInt = 10;
+            //Nullable<int> nullableInt = 10;
+
+            double? nullableDouble = 3.14;
+            //Nullable<double> nullableDouble = 3.14;
+
+            bool? nullableBool = null;
+            //Nullable<bool> nullableBool = null;
+
+            char? nullableChar = 'a';
+            //Nullable<char> nullableChar = 'a';
+
+            int?[] arrayOfNullableInts = new int?[10];
+            //Nullable<int>[] arrayOfNullableInts = new int?[10];
+
+            // Error! Strings are reference types! 
+            // string? s = "oops"; 
         }
 
-        class Person
+        class DatabaseReader
         {
-            public string personName;
-            public int personAge;
-            // Constructors. 
-            public Person(string name, int age)
+            //Nullable data field
+            public int? numericValue = null;
+            public bool? boolValue = true;
+
+            //return type is Nallable
+            public int? GetIntFromDatabase()
             {
-                personName = name;
-                personAge = age;
+                return numericValue;
             }
-            public Person() { }
-            public void Display()
+
+            public bool? GetBoolFromDatabase()
             {
-                Console.WriteLine("Name: {0}, Age: {1}", personName, personAge);
+                return boolValue;
             }
+
         }
 
         static void Main(string[] args)
         {
-            Console.WriteLine("***** Passing Person object by reference *****");
-            Person mel = new Person("Mel", 23);
-            Console.WriteLine("Before passing by ref call, Person is:");
-            mel.Display();
+            DatabaseReader dr = new DatabaseReader();
 
-            Console.WriteLine();
+            int? i = dr.GetIntFromDatabase();
+            if (i.HasValue)
+            {
+                Console.WriteLine("Value of 'i' is: {0}", i.Value);
+            }
+            else
+            {
+                Console.WriteLine("Value of 'i' is undefined.");
+            }
 
-            // Passing ref-types by ref
-            SendAPersonByReference(ref mel);
-            Console.WriteLine("After passing by ref call, Person is:");
-            mel.Display();
-
-            Console.ReadLine();
+            bool? b = dr.GetBoolFromDatabase();
+            if (b.HasValue)
+            {
+                Console.WriteLine("Value of 'b' is: {0}", b.Value);
+            }
+            else
+            {
+                Console.WriteLine("Value of 'b' is undefined.");
+            }
 
 
             Console.ReadLine();
