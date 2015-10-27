@@ -12,14 +12,14 @@ namespace ProCsharp5
         static void Main(string[] args)
         {
 
-            Console.WriteLine("***** Properties Encapsulation *****\n");
-            Employee emp = new Employee("Marvin", 456, 30000);
-            emp.GiveBonus(1000);
-            emp.DisplayStats();
-
-            // Set and get the Name property. 
-            emp.Name = "Marv";
-            Console.WriteLine("Employee is named: {0}", emp.Name);
+            Console.WriteLine("***** Automatic Properties *****\n");
+            Car c = new Car();
+            c.PetName = "Frank";
+            c.Speed = 55;
+            c.Color = "Red";
+            Console.WriteLine("Your car is named {0}? That's odd...",
+            c.PetName);
+            c.DisplayStats();
 
             Console.ReadLine();
             
