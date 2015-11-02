@@ -29,7 +29,8 @@ namespace ProCsharp5
             The TargetSite Property
                 TargetSite return a strongly typed System.Reflection.MethodBaseobject
 
-
+            The System.Exception.StackTrace property 
+                allows you to identify the series of calls that resulted in the exception.
 
 
          */
@@ -54,12 +55,7 @@ namespace ProCsharp5
             catch (Exception e)
             {
                 Console.WriteLine("\n*** Error! ***");
-                Console.WriteLine("Member name: {0}", e.TargetSite);
-                Console.WriteLine("Class defining member: {0}",
-                e.TargetSite.DeclaringType);//the fully qualified  name of the class that threw the error
-                                Console.WriteLine("Member type: {0}", e.TargetSite.MemberType);//the type of member
-                Console.WriteLine("Message: {0}", e.Message);
-                Console.WriteLine("Source: {0}", e.Source);
+                Console.WriteLine("Stack: {0}", e.StackTrace);
             }
 
             // The error has been handled, processing continues with the next statement. 
