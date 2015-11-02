@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
+
 
 namespace ProCsharp5
 {
@@ -33,6 +35,10 @@ namespace ProCsharp5
                 allows you to identify the series of calls that resulted in the exception.
 
             The HelpLink Property
+
+            The Data Property
+                The Data property returns an object implementing the interface IDictionary.
+                key/value pairs data
                 
 
 
@@ -59,6 +65,14 @@ namespace ProCsharp5
             {
                 Console.WriteLine("\n*** Error! ***");
                 Console.WriteLine("Help Link: {0}", e.HelpLink);
+
+                // By default, the data field is empty, so check for null. 
+                Console.WriteLine("\n-> Custom Data:");
+                if (e.Data != null)
+                {
+                    foreach (DictionaryEntry de in e.Data)
+                        Console.WriteLine("-> {0}: {1}", de.Key, de.Value);
+                }
             }
 
             // The error has been handled, processing continues with the next statement. 
