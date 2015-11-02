@@ -32,6 +32,9 @@ namespace ProCsharp5
             The System.Exception.StackTrace property 
                 allows you to identify the series of calls that resulted in the exception.
 
+            The HelpLink Property
+                
+
 
          */
 
@@ -55,7 +58,7 @@ namespace ProCsharp5
             catch (Exception e)
             {
                 Console.WriteLine("\n*** Error! ***");
-                Console.WriteLine("Stack: {0}", e.StackTrace);
+                Console.WriteLine("Help Link: {0}", e.HelpLink);
             }
 
             // The error has been handled, processing continues with the next statement. 

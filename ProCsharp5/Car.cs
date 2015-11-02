@@ -53,8 +53,12 @@ namespace ProCsharp5
                     CurrentSpeed = 0;
                     carIsDead = true;
 
-                    // Use the "throw" keyword to raise an exception. 
-                    throw new Exception(string.Format("{0} has overheated!", PetName));
+                    // We need to call the HelpLink property, thus we need to 
+                    // create a local variable before throwing the Exception object. 
+                    Exception ex =
+                    new Exception(string.Format("{0} has overheated!", PetName));
+                    ex.HelpLink = "http://www.CarsRUs.com";
+                    throw ex;
                 }
                 else
                     Console.WriteLine("=> CurrentSpeed = {0}", CurrentSpeed);
