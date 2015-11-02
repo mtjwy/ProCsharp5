@@ -24,6 +24,12 @@ namespace ProCsharp5
             the like). Deciding exactly what justifies throwing an exception is a design issue 
             you must always contend with.
 
+            Exception properties:
+
+            The TargetSite Property
+                TargetSite return a strongly typed System.Reflection.MethodBaseobject
+
+
 
 
          */
@@ -44,10 +50,14 @@ namespace ProCsharp5
                 for (int i = 0; i < 10; i++)
                     myCar.Accelerate(10);
             }
+            // TargetSite actually returns a MethodBase object. 
             catch (Exception e)
             {
                 Console.WriteLine("\n*** Error! ***");
-                Console.WriteLine("Method: {0}", e.TargetSite);
+                Console.WriteLine("Member name: {0}", e.TargetSite);
+                Console.WriteLine("Class defining member: {0}",
+                e.TargetSite.DeclaringType);//the fully qualified  name of the class that threw the error
+                                Console.WriteLine("Member type: {0}", e.TargetSite.MemberType);//the type of member
                 Console.WriteLine("Message: {0}", e.Message);
                 Console.WriteLine("Source: {0}", e.Source);
             }
