@@ -7,33 +7,59 @@ using System.Threading.Tasks;
 namespace ProCsharp5
 {
     /*
-        Automatic Properties 
-            Automatic properties must be read and write. it is notpossible to build 
-            read-only or write-only automatic properties.
-
-            Default Values: 0, false, null
-
-            automatic properties never do more than provide simple encapsulation for 
-            an underlyingpiece of (compiler-generated) private data. 
-
-            Be aware, that if you are building a property that requires additional code 
-            beyond getting and setting the underlying private field (such as data validation 
-            logic, writing to an event log, communicating with a database, etc.), you will be 
-            required to define a “normal” .NET property type byhand.
+       
             
      */
     class Car
     {
-        // Automatic properties! 
-        public string PetName { get; set; }
-        public int Speed { get; set; }
-        public string Color { get; set; }
+        // Constant for maximum speed.
+        public const int MaxSpeed = 100;
 
-        public void DisplayStats()
+        // Car properties. 
+        public int CurrentSpeed { get; set; }
+        public string PetName { get; set; }
+
+        // Is the car still operational? 
+        private bool carIsDead;
+
+        // A car has-a radio. 
+        private Radio theMusicBox = new Radio();
+
+        // Constructors. 
+        public Car() { }
+        public Car(string name, int speed)
         {
-            Console.WriteLine("Car Name: {0}", PetName);
-            Console.WriteLine("Speed: {0}", Speed);
-            Console.WriteLine("Color: {0}", Color);
+            CurrentSpeed = speed;
+            PetName = name;
         }
+
+        public void CrankTunes(bool state)
+        {
+            // Delegate request to inner object. 
+            theMusicBox.TurnOn(state);
+        }
+
+        // See if Car has overheated. 
+        public void Accelerate(int delta)
+        {
+            if (carIsDead)
+                Console.WriteLine("{0} is out of order...", PetName);
+            else
+            {
+                CurrentSpeed += delta;
+                if (CurrentSpeed > MaxSpeed)
+                {
+                    
+                    CurrentSpeed = 0;
+                    carIsDead = true;
+
+                    // Use the "throw" keyword to raise an exception. 
+                    throw new Exception(string.Format("{0} has overheated!", PetName));
+                }
+                else
+                    Console.WriteLine("=> CurrentSpeed = {0}", CurrentSpeed);
+            }
+        }
+
     }
 }
